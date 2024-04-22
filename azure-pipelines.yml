@@ -16,8 +16,8 @@ stages:
         vmImage: 'ubuntu-20.04'
         steps:
         - task: Docker@2
-        displayName: 'Build and push the image to container registry'
-        inputs:
+          displayName: 'Build and push the image to container registry'
+          inputs:
             command: buildAndPush
             buildContext: $(Build.Repository.LocalPath)
             repository: $(webRepository)
@@ -37,7 +37,7 @@ stages:
         - group: Release
         steps:
         - task: AzureWebAppContainer@1
-        inputs:
-        appName: $(WebAppName)
-        azureSubscription: 'Resource Manager - Tailspin - Space Game'
-        imageName: $(RegistryName)/$(webRepository):$(build.buildId)
+          inputs:
+           appName: $(WebAppName)
+           azureSubscription: 'Resource Manager - Tailspin - Space Game'
+           imageName: $(RegistryName)/$(webRepository):$(build.buildId)
